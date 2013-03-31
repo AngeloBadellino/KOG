@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>KOG - KnockOut Grid Plugin</title>
+    <script src="./js/ko.js"></script>
+    <script src="./js/kog.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="./css/bootstrap-responsive.min.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="./css/bootstrap.min.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="./css/main.css" media="screen" />
+</head>
+<body>
+    <style>
+        .kog { margin-bottom: 1em; width: 25em; border: 1px solid silver; background-color:White; }
+        .kog th { text-align:left; background-color: Black; color:White; }
+        .kog td, th { padding: 0.4em; }
+        .kog tr:nth-child(odd) { background-color: #DDD; }
+        .ko-grid-pageLinks { margin-bottom: 1em; }
+        .ko-grid-pageLinks a { padding: 0.5em; }
+        .ko-grid-pageLinks a.selected { background-color: Black; color: White; }
+        .main{background-color: #ffffff}
+    </style>
+
+    <div class="row-fluid">
+        <div class="main span10 offset1">
+            <div class="page-header"><h1>KOG - KnockOut Grid Plugin<br /><small>An extension of the Knockout Grid Plugin</small></h1></div>
+            <div class="hero-unit"><div><div data-bind='simpleGrid: gvm'></div><div>aa</div></div></div>
+        </div>
+    </div>
+
+    <script>
+        var d = [
+            { name: "Everest", height: 8848, country: "Nepal" },
+            { name: "K2", height: 8611, country: "Pakistan" },
+            { name: "Kangchenjunga", height: 8586, country: "India" },
+            { name: "Lhotse", height: 8516, country: "Nepal" },
+            { name: "Makalu", height: 8463, country: "Nepal" },
+            { name: "Cho Oyu", height: 8210, country: "Nepal" },
+            { name: "Dhaulagiri", height: 8167, country: " Nepal" },
+            { name: "Manaslu", height: 8163, country: " Nepal" },
+            { name: "Nanga Parbat", height: 8125, country: " Pakistan" },
+            { name: "Annapurna", height: 8091, country: " Nepal" },
+            { name: "Gasherbrum I", height: 8068, country: " Pakistan" },
+            { name: "Broad Peak", height: 8047, country: " Pakistan" },
+            { name: "Gasherbrum II", height: 8035, country: " Pakistan" },
+            { name: "Broad Peak", height: 8047, country: " Pakistan" },
+            { name: "Shisha Pangma", height: 8025, country: "Tibet" }
+        ];
+
+        var vm = function(ds)
+        {
+            var self = this;
+            self.items = ko.observableArray(ds);
+
+            this.gvm = new ko.simpleGrid.viewModel({
+                data: this.items,
+                pagerCount: 3,
+                pageSize: 5,
+                columns: [
+                    { headerText: "Nome", rowText: "name" },
+                    { headerText: "Height", rowText: "height" },
+                    { headerText: "Country", rowText: "country" }
+                ]
+            });
+        }
+
+        ko.applyBindings(new vm(d));
+
+    </script>
+</body>
+</html>
